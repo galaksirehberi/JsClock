@@ -5,6 +5,7 @@
 <canvas id="myCanvas" width="500" height="450" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script>
+    
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 ctx.save();
@@ -25,6 +26,48 @@ ctx.rotate(6 * Math.PI / 180);
 ctx.moveTo(0, 0);
 ctx.lineTo(300, 150);
 ctx.stroke();
+
+
+/*
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+
+
+ctx.translate(250,250);
+
+
+
+
+ctx.moveTo(0,0);
+ctx.lineTo(80,60);
+ctx.stroke();
+
+
+ctx.rotate(76 * Math.PI/180);
+ctx.moveTo(0,0);
+ctx.lineTo(40,50);       
+ctx.stroke();
+
+
+</script>
+
+</body>
+</html>
+
+
+
+*/
 
 </script>
 

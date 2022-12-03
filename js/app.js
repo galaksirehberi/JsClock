@@ -11,8 +11,9 @@ Clock.coordDx = x;
 Clock.coordDy = y;
 Clock.radius = 220; 
 Clock.startAngle = 0;
-Clock.endAngle = 2 * Math.PI;
+Clock.endAngle = 0.5 * Math.PI;
 Clock.now = new Date();
+
 
     Clock.Shape=()=>{
         let ctx = Clock.id.getContext("2d");
@@ -21,7 +22,7 @@ Clock.now = new Date();
                  Clock.coordDy,
                  Clock.radius,
                  Clock.startAngle,
-                 Clock.endAngle ); 
+                 Clock.endAngle );
         ctx.translate(Clock.coordDx,Clock.coordDy);
         let Vector2 = {};
         let ImSize = 3;       
@@ -36,8 +37,8 @@ Clock.now = new Date();
                             ctx.fillRect(Vector2.x,Vector2.y, 
                             ImSize+2,ImSize+2 );
                 }
-                ctx.fillRect(Vector2.x, Vector2.y,
-                            ImSize,ImSize);
+               // ctx.fillRect(Vector2.x, Vector2.y,
+               //             ImSize,ImSize);
                 
                 console.log(i +'=>' + Vector2.x  +','+ Vector2.y+ '\n'); 
                 i-=6;
@@ -77,8 +78,8 @@ Clock.now = new Date();
             
             ctx.save();
             //  ctx.rotate(i * Math.PI / 180 );
-            Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius; 
-            Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;
+            Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius;   // sin30 = x / hipotenus
+            Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;   // con30 = y / hipotenus 
             ctx.moveTo(0,0);
             ctx.lineTo(Vector2.x,Vector2.y);       
             ctx.stroke();
@@ -92,11 +93,11 @@ Clock.now = new Date();
             // restore the context to its untranslated state
             ctx.restore();
 
-        },100);  
+        },1000);  
         
-//ctx.setTransform(1, 0, 0, 1, 0, 0);
-//ctx.rotate(90 * Math.PI / 180 )
-//ctx.clearRect(0, 0, 800, 800); 
+            //ctx.setTransform(1, 0, 0, 1, 0, 0);
+            //ctx.rotate(90 * Math.PI / 180 )
+            //ctx.clearRect(0, 0, 800, 800); 
        
     };
 
@@ -134,7 +135,7 @@ Clock.now = new Date();
     };
 
     Clock.Shape(); 
-    Clock.FindCoordinates();
+   // Clock.FindCoordinates();
    // Clock.MinuteHand();
    // Clock.HourHand();
    // Clock.SecHand();
