@@ -1,0 +1,19 @@
+[1mdiff --git a/js/app.js b/js/app.js[m
+[1mindex 5bab72f..d3e80f9 100644[m
+[1m--- a/js/app.js[m
+[1m+++ b/js/app.js[m
+[36m@@ -63,7 +63,7 @@[m [mClock.now = new Date();[m
+         let c_date = new Date();[m
+         let hour = c_date.getHours();[m
+         let minute = c_date.getMinutes();[m
+[31m-        let seconds = c_date.getSeconds();[m
+[32m+[m[32m        let seconds = c_date.getSeconds();[m[41m  [m
+ [m
+         // sin 0 ve cos 0 'ın oldugu saati biliyoruz 6 yada 18         [m
+         // sin 30 * r = x [m
+[36m@@ -139,3 +139,4 @@[m [mClock.now = new Date();[m
+    // Clock.MinuteHand();[m
+    // Clock.HourHand();[m
+    // Clock.SecHand();[m
+[32m+[m[32m//tests[m
+\ No newline at end of file[m

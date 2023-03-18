@@ -72,12 +72,12 @@ Clock.now = new Date();
      
        let  i = 360 ;
        let Vector2 = {};
+
+       
        let interval = setInterval(function(){
        ctx.beginPath();          
-            // save the current untranslated context state
-            
-            ctx.save();
-            //  ctx.rotate(i * Math.PI / 180 );
+
+     
             Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius;   // sin30 = x / hipotenus
             Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;   // con30 = y / hipotenus 
             ctx.moveTo(0,0);
@@ -90,8 +90,6 @@ Clock.now = new Date();
             }
             console.log(i+'\n');        
 
-            // restore the context to its untranslated state
-            ctx.restore();
 
         },1000);  
         
@@ -135,7 +133,8 @@ Clock.now = new Date();
     };
 
     Clock.Shape(); 
-   // Clock.FindCoordinates();
+   Clock.FindCoordinates();
    // Clock.MinuteHand();
    // Clock.HourHand();
    // Clock.SecHand();
+//tests
