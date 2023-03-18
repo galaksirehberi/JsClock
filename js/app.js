@@ -2,16 +2,14 @@ let cid = document.getElementById("ClockView");
 const canvas_w = cid.width;
 const canvas_h = cid.height;
 
-const x  = canvas_w / 2;
-const y  = canvas_h / 2 ;
 
 const Clock = {};
 Clock.id = cid;
-Clock.coordDx = x;
-Clock.coordDy = y;
-Clock.radius = 220; 
-Clock.startAngle = 0;
-Clock.endAngle = 0.5 * Math.PI;
+Clock.coordDx = canvas_w / 2;   
+Clock.coordDy = canvas_h / 2 ;
+Clock.radius = 220;                         // yaricap
+Clock.startAngle = 0;                       
+Clock.endAngle = 0.5 * Math.PI; 
 Clock.now = new Date();
 
 
@@ -132,7 +130,7 @@ Clock.now = new Date();
 
     };
 
-    Clock.Shape(); 
+   Clock.Shape(); 
    Clock.FindCoordinates();
    // Clock.MinuteHand();
    // Clock.HourHand();
