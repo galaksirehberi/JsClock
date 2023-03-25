@@ -3,7 +3,8 @@
 <script type="text/javascript" src="js/app.js" defer></script> 
 <style>
     body{
-        background:#aaaaaa;
+       
+
     }
     div#Container
     {
@@ -15,13 +16,15 @@
     #ClockView { 
         border:1px solid red; 
          color:#ffffff;
+        
     }
 </style>
 </head>
 <body>
-        <div class="Container">
+        <div class="Container" style="position:relative">
                 <div class="Settings"></div>
-                <canvas id="ClockView" width="1800" height="800"></canvas>   
+                <canvas id="ClockView" width="1800" height="800" style="position:absolute;"></canvas>   
+                <canvas id="ClockSecond" width="1800" height="800" style=" position:absolute;"></canvas>
         </div>
 </body>
 </html>
