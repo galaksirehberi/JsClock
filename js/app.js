@@ -1,3 +1,4 @@
+let minid = document.getElementById('ClockMinute');
 let secid = document.getElementById("ClockSecond");
 let cid = document.getElementById("ClockView");
 const canvas_w = cid.width;
@@ -19,6 +20,11 @@ Clock.now = new Date();
 Clock.secid = secid;
 Clock.secWidth = 2;
 Clock.secHeight = Clock.radius ;
+
+Clock.minid = minid;
+Clock.minWidth = 10;
+Clock.minHeight = Clock.radius - 100 ;
+
 
 // Bir kere alinacak degerler
 var digitalClock = Clock.now.getHours() + ':' +  Clock.now.getMinutes()  + ':' +  Clock.now.getSeconds() ; 
@@ -65,17 +71,25 @@ document.getElementById('digital').innerHTML = digitalClock;
         ctx.beginPath();  
         ctx.translate(Clock.coordDx,Clock.coordDy);
         ctx.moveTo(0,0);
-        ctx.fillStyle="RED";
+        ctx.fillStyle="ORANGE";
+        ctx.rotate( Math.PI );                                              // ibreyi 6 dan al 12 ye getir. (SIFIRLA)
+        
+                                                                            
+        ctx.rotate( i * Clock.now.getSeconds() * Math.PI / 180 ) ;          // Su andaki saniye konumuna getir.    
+
         let interval = setInterval(function(){
             
             ctx.clearRect(-1, -1, 1800, 800); 
             //Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius;   
             //Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;   
            
-            ctx.rotate( i * Math.PI / 180 );       
+            ctx.rotate( i * Math.PI / 180  );          
             ctx.fillRect(0, 0, Clock.secWidth, Clock.secHeight);    
             ctx.closePath();   
+           
         },1000);
+
+       
           
     }
    
@@ -89,5 +103,10 @@ document.getElementById('digital').innerHTML = digitalClock;
 
 
 
+
+
      Clock.shape(); 
      Clock.getSec();
+
+
+    
