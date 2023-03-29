@@ -21,17 +21,19 @@ Clock.now = new Date();
 Clock.secid = secid;
 Clock.secWidth = 2;
 Clock.secHeight = Clock.radius ;
+Clock.secIncrement = Clock.now.getSeconds();
 
 // Min Hand 
 Clock.minid = minid;
-Clock.minWidth = 10;
-Clock.minHeight = Clock.radius - 100 ;
+Clock.minWidth = 4;
+Clock.minHeight = Clock.radius - 15 ;
+Clock.minIncrement = Clock.now.getMinutes();
 
 // Hour Hand
 Clock.hourid = hourid;
-Clock.hourWidth = 15;
-Clock.hourHeight = Clock.radius - 130;
-
+Clock.hourWidth = 6;
+Clock.hourHeight = Clock.radius - 20;
+Clock.hourIncrement = Clock.now.getHours();
 
 // Bir kere alinacak degerler
 var digitalClock = Clock.now.getHours() + ':' +  Clock.now.getMinutes()  + ':' +  Clock.now.getSeconds() ; 
@@ -59,8 +61,18 @@ document.getElementById('digital').innerHTML = digitalClock;
                 } 
                 Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius; 
                 Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;
-                ctx.fillRect(Vector2.x,Vector2.y, ImSize+2,ImSize+2 );   
                 //console.log(i +'=>' + Vector2.x  +','+ Vector2.y+ '\n'); 
+                if(i % 30  == 0 ) {
+                    ctx.fillStyle = "#FF6347";
+                    ctx.fillRect(Vector2.x,Vector2.y, ImSize+5,ImSize+5 );   
+                    
+                }else{
+                    ctx.fillStyle = "#FF7F50";
+                    ctx.fillRect(Vector2.x,Vector2.y, ImSize+2,ImSize+2 );   
+                    
+                }
+                
+
                 
                 i-=6;  
 
@@ -82,9 +94,9 @@ document.getElementById('digital').innerHTML = digitalClock;
         ctxHour.beginPath();
         ctxHour.translate(Clock.coordDx,Clock.coordDy);
         ctxHour.moveTo(0,0);
-        ctxHour.fillStyle = "GREEN";
+        ctxHour.fillStyle = "#FF4500";
         ctxHour.rotate(Math.PI);                                              // Ibreyi SIFIRLA
-        ctxHour.rotate( i * Clock.now.getHours() * Math.PI / 180 ) ;        // Su andaki dakika konumuna getir.  
+        ctxHour.rotate( i * Clock.now.getHours() * Math.PI / 180 ) ;        // Su andaki saat konumuna getir.  
         ctxHour.fillRect(0, 0, Clock.hourWidth, Clock.hourHeight);    
         ctxHour.closePath();   
 
@@ -93,7 +105,7 @@ document.getElementById('digital').innerHTML = digitalClock;
         ctxMin.beginPath();
         ctxMin.translate(Clock.coordDx,Clock.coordDy);
         ctxMin.moveTo(0,0);
-        ctxMin.fillStyle = "ORANGE";
+        ctxMin.fillStyle = "#FF8C00";
         ctxMin.rotate(Math.PI);                                              // Ibreyi SIFIRLA
         ctxMin.rotate( i * Clock.now.getMinutes() * Math.PI / 180 ) ;        // Su andaki dakika konumuna getir.  
         ctxMin.fillRect(0, 0, Clock.minWidth, Clock.minHeight);    
@@ -103,34 +115,41 @@ document.getElementById('digital').innerHTML = digitalClock;
         ctx.beginPath();  
         ctx.translate(Clock.coordDx,Clock.coordDy);
         ctx.moveTo(0,0);
-        ctx.fillStyle="ORANGE";
+        ctx.fillStyle="BLACK";
         ctx.rotate( Math.PI );                                              // ibreyi 6 dan al 12 ye getir. (SIFIRLA)
         ctx.rotate( i * Clock.now.getSeconds() * Math.PI / 180 ) ;          // Su andaki saniye konumuna getir.  
         ctx.fillRect(0, 0, Clock.secWidth, Clock.secHeight);      
 
         let interval = setInterval(function(){
             
-            
             //Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius;   
             //Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;   
+
            
-            ctx.clearRect(-1, -1, 1800, 800); 
-            ctx.rotate( i * Math.PI / 180  );          
-            ctx.fillRect(0, 0, Clock.secWidth, Clock.secHeight);    
-            ctx.closePath();   
 
-
+            if(Clock.secIncrement == 59 ){
+            
             ctxMin.clearRect(-1, -1, 1800, 800); 
             ctxMin.rotate( i * Math.PI / 180  );          
             ctxMin.fillRect(0, 0, Clock.minWidth, Clock.minHeight);    
             ctxMin.closePath();   
+            Clock.minIncrement+=1;
+            Clock.secIncrement = 0 ;
+            }
 
-            
+            if(Clock.minIncrement == 59){ 
             ctxHour.clearRect(-1, -1, 1800, 800); 
             ctxHour.rotate( i * Math.PI / 180  );          
             ctxHour.fillRect(0, 0, Clock.hourWidth, Clock.hourHeight);    
-            ctxHour.closePath();   
-          
+            ctxHour.closePath(); 
+            Clock.minIncrement = 0;   
+            }
+
+            Clock.secIncrement+=1;
+            ctx.clearRect(-1, -1, 1800, 800); 
+            ctx.rotate( i * Math.PI / 180  );          
+            ctx.fillRect(0, 0, Clock.secWidth, Clock.secHeight);    
+            ctx.closePath();   
             
            
         },1000);
