@@ -96,7 +96,7 @@ document.getElementById('digital').innerHTML = digitalClock;
         ctxHour.moveTo(0,0);
         ctxHour.fillStyle = "#FF4500";
         ctxHour.rotate(Math.PI);                                              // Ibreyi SIFIRLA
-        ctxHour.rotate( i * Clock.now.getHours() * Math.PI / 180 ) ;        // Su andaki saat konumuna getir.  
+        ctxHour.rotate( i*5 * Clock.now.getHours() * Math.PI / 180 ) ;        // Su andaki saat konumuna getir.  
         ctxHour.fillRect(0, 0, Clock.hourWidth, Clock.hourHeight);    
         ctxHour.closePath();   
 
@@ -125,34 +125,37 @@ document.getElementById('digital').innerHTML = digitalClock;
             //Vector2.x = Math.sin(i * Math.PI / 180 ) * Clock.radius;   
             //Vector2.y = Math.cos(i * Math.PI / 180 ) * Clock.radius;   
 
-           
 
-            if(Clock.secIncrement == 59 ){
-            
-            ctxMin.clearRect(-1, -1, 1800, 800); 
-            ctxMin.rotate( i * Math.PI / 180  );          
-            ctxMin.fillRect(0, 0, Clock.minWidth, Clock.minHeight);    
-            ctxMin.closePath();   
-            Clock.minIncrement+=1;
-            Clock.secIncrement = 0 ;
-            }
-
-            if(Clock.minIncrement == 59){ 
-            ctxHour.clearRect(-1, -1, 1800, 800); 
-            ctxHour.rotate( i * Math.PI / 180  );          
-            ctxHour.fillRect(0, 0, Clock.hourWidth, Clock.hourHeight);    
-            ctxHour.closePath(); 
-            Clock.minIncrement = 0;   
-            }
 
             Clock.secIncrement+=1;
             ctx.clearRect(-1, -1, 1800, 800); 
             ctx.rotate( i * Math.PI / 180  );          
             ctx.fillRect(0, 0, Clock.secWidth, Clock.secHeight);    
             ctx.closePath();   
+
+            if(Clock.secIncrement == 60 ){
+                ctxMin.clearRect(-1, -1, 1800, 800); 
+                ctxMin.rotate( i * Math.PI / 180  );            
+                ctxMin.fillRect(0, 0, Clock.minWidth, Clock.minHeight);    
+                ctxMin.closePath();   
+                Clock.minIncrement+=1;
+                Clock.secIncrement = 0;
+            }
+
+            if(Clock.minIncrement == 60){ 
+               // clearInterval(interval); 
+                ctxHour.clearRect(-1, -1, 1800, 800); 
+                ctxHour.rotate( i * Math.PI / 180  );          
+                ctxHour.fillRect(0, 0, Clock.hourWidth, Clock.hourHeight);    
+                ctxHour.closePath(); 
+                Clock.hourIncrement +=1;
+                Clock.minIncrement = 0;   
+            }
+
+    
+            document.getElementById("digital_app").innerHTML = "Digital App :" +  Clock.hourIncrement+':' +Clock.minIncrement+':' +Clock.secIncrement + ':';   
             
-           
-        },1000);
+        },10);
 
        
           
