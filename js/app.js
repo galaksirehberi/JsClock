@@ -151,11 +151,9 @@ document.getElementById('digital').innerHTML = digitalClock;
                 Clock.hourIncrement +=1;
                 Clock.minIncrement = 0;   
             }
-
-    
             document.getElementById("digital_app").innerHTML = "Digital App :" +  Clock.hourIncrement+':' +Clock.minIncrement+':' +Clock.secIncrement + ':';   
             
-        },10);
+        },1000);
 
        
           
