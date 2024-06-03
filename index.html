@@ -1,0 +1,41 @@
+<html>
+<head>
+<script type="text/javascript" src="js/app.js" defer></script> 
+<style>
+    body{
+       background:#186a99;
+
+    }
+    div#Container
+    {
+        margin:auto;
+        overflow:auto;
+        border:1px solid green;
+        text-align:center;
+    }
+    #ClockView { 
+        border:1px solid red;  
+         color:#ffffff;
+        
+    }
+</style>
+</head>
+<body>
+        <div class="Container" style="position:relative"> 
+                <div class="Settings">
+                    
+                </div>
+                <div id="digital_app" style="background:#ffffff; font-size:30px;">
+
+                </div>
+                <canvas id="ClockView" width="800" height="600" style="position:absolute;"></canvas>   
+                <canvas id="ClockSecond" width="800" height="600" style=" position:absolute;"></canvas>
+                <canvas id="ClockMinute" width="800" height="600" style=" position:absolute;"></canvas>
+                <canvas id="ClockHour"  width="800"  height="600" style="position:absolute"></canvas>
+        </div>
+        <div id="digital"></div>
+        
+
+        
+</body>
+</html>  
